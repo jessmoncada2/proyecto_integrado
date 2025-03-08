@@ -1,5 +1,5 @@
 from typing import Dict
-
+import pandas as pd
 import requests
 from pandas import DataFrame, read_csv, read_json, to_datetime
 
@@ -21,24 +21,24 @@ def get_public_holidays(public_holidays_url: str, year: str) -> DataFrame:
         DataFrame: A dataframe with the public holidays.
     """
 
-response = requests.get(f'{public_holidays_url}/{year}/BR')
-try:
-    response.raise_for_status()
-    df = pd.read_json(response.text)
+    response = requests.get(f'{public_holidays_url}/{year}/BR')
+    try:
+        response.raise_for_status()
+        df = pd.read_json(response.text)
     
-    #Se eliminan las columnas "types" y "counties"
-    df = df.drop(columns=["types", "counties"], errors='ignore')
+        #Se eliminan las columnas "types" y "counties"
+        df = df.drop(columns=["types", "counties"], errors='ignore')
     
-    #Se convierte la columna "date" a datetime
-    df["date"] = pd.to_datetime(df["date"])
+        #Se convierte la columna "date" a datetime
+        df["date"] = pd.to_datetime(df["date"])
     
-    return df
+        return df
 
-except requests.exceptions.RequestException as e:
-    print('Error!')
-    print(response)
-    raise SystemExit(e)
-    raise NotImplementedError
+    except requests.exceptions.RequestException as e:
+        print('Error!')
+        print(response)
+        raise SystemExit(e)
+        raise NotImplementedError
 
 
 def extract(
