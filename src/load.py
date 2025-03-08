@@ -15,4 +15,6 @@ def load(data_frames: Dict[str, DataFrame], database: Engine):
     # usar pandas.DataFrame.to_sql() para cargar el DataFrame en la base de datos
     # como una tabla.
     # Para el nombre de la tabla, utiliza las claves del diccionario `data_frames`.
+
+    
     raise NotImplementedError
