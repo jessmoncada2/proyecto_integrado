@@ -38,8 +38,6 @@ def get_public_holidays(public_holidays_url: str, year: str) -> DataFrame:
         print('Error!')
         print(response)
         raise SystemExit(e)
-        raise NotImplementedError
-
 
 def extract(
     csv_folder: str, csv_table_mapping: Dict[str, str], public_holidays_url: str
