@@ -1,6 +1,6 @@
 import matplotlib
 import matplotlib.pyplot as plt
-
+import pandas as pd
 import plotly.express as px
 import seaborn as sns
 
@@ -179,10 +179,22 @@ def plot_freight_value_weight_relationship(df: DataFrame):
     Args:
         df (DataFrame): Dataframe with freight value weight relationship query result
     """
-    # TODO: Representar gráficamente la relación entre el valor del flete y el peso usando un scatterplot de seaborn.
-    # El eje x debe ser el peso (weight) y el eje y debe ser el valor del flete (freight value).
+    # Convert the 'product_weight_g' column to numeric
+    df['product_weight_g'] = pd.to_numeric(df['product_weight_g'], errors='coerce')
+    
+    # Convert the 'freight_value' column to numeric
+    df['freight_value'] = pd.to_numeric(df['freight_value'], errors='coerce')
 
-    raise NotImplementedError
+    # Plot the relationship between freight value and product weight
+    plt.figure(figsize=(14, 7))
+    sns.scatterplot(x='product_weight_g', y='freight_value', data=df)
+
+    # Add labels and title
+    plt.xlabel('Product Weight (g)')
+    plt.ylabel('Freight Value')
+    plt.title('Freight Value vs. Product Weight')
+    plt.grid(True)
+    plt.show()
 
 
 def plot_delivery_date_difference(df: DataFrame):
@@ -202,8 +214,22 @@ def plot_order_amount_per_day_with_holidays(df: DataFrame):
     Args:
         df (DataFrame): Dataframe with order amount per day with holidays query result
     """
-    # TODO: Graficar el monto de pedidos por día con los días festivos usando matplotlib.
-    # Marcar los días festivos con líneas verticales.
-    # Sugerencia: usar plt.axvline.
+    # Convert the 'date' column to datetime
+    df['date'] = pd.to_datetime(df['date'])
 
-    raise NotImplementedError
+    # Plot the order count per day
+    plt.figure(figsize=(14, 7))
+    plt.plot(df['date'], df['order_count'], label='Order Count')
+
+    # Mark holidays with vertical lines
+    holidays = df[df['holiday'] == True]['date']
+    for holiday in holidays:
+        plt.axvline(x=holiday, color='r', linestyle='--', alpha=0.7)
+
+    # Add labels and title
+    plt.xlabel('Date')
+    plt.ylabel('Order Count')
+    plt.title('Order Amount per Day with Holidays')
+    plt.legend()
+    plt.grid(True)
+    plt.show()

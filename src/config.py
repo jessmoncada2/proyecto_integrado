@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Dict
 
 DATASET_ROOT_PATH = str(Path(__file__).parent.parent / "dataset")
-QUERIES_ROOT_PATH = str(Path(__file__).parent.parent / "queries")
+QUERIES_ROOT_PATH = "c:/Users/Usuario/Desktop/proyecto_integrador/queries"
 QUERY_RESULTS_ROOT_PATH = str(Path(__file__).parent.parent / "tests/query_results")
 PUBLIC_HOLIDAYS_URL = "https://date.nager.at/api/v3/publicholidays"
 SQLITE_BD_ABSOLUTE_PATH = str(Path(__file__).parent.parent / "olist.db")

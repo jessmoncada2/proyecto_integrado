@@ -13,4 +13,4 @@ def load(data_frames: Dict[str, DataFrame], database: Engine):
     """
 
     for key, value in data_frames.items():
-        value.to_sql(key,database)
+        value.to_sql(key, database, if_exists='replace')
