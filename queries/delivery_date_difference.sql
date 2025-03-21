@@ -1,3 +1,4 @@
+
 SELECT
     olist_customers.customer_state AS State,
     ROUND(AVG(julianday(olist_orders.order_delivered_customer_date) - julianday(olist_orders.order_estimated_delivery_date)), 6) AS Delivery_Difference
