@@ -1,4 +1,6 @@
 # Proyecto Integrador IV
+#Catalina Alvarez
+#Jessica Moncada
 > Pipeline de Datos de E-Commerce
 
 En este proyecto se espera que completes el código por tu cuenta, pero siempre contarás con el docente para responder cualquier inquietud. Por favor, lee todo el notebook antes de empezar, esto te dará una mejor idea de lo que necesitas lograr.
