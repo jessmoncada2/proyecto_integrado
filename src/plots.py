@@ -207,29 +207,34 @@ def plot_delivery_date_difference(df: DataFrame):
         title="Difference Between Delivery Estimate Date and Delivery Date"
     )
 
-
-def plot_order_amount_per_day_with_holidays(df: DataFrame):
+def plot_order_amount_per_day_with_holidays(df):
     """Plot order amount per day with holidays
 
     Args:
         df (DataFrame): Dataframe with order amount per day with holidays query result
     """
-    # Convert the 'date' column to datetime
-    df['date'] = pd.to_datetime(df['date'])
-
-    # Plot the order count per day
+    # Convertir la columna 'date' a tipo datetime si no lo es
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+    
+    # Crear una figura y un eje para la gráfica
     plt.figure(figsize=(14, 7))
+    
+    # Graficar el monto de los pedidos por día
     plt.plot(df['date'], df['order_count'], label='Order Count')
-
-    # Mark holidays with vertical lines
+    
+    # Marcar los días festivos con líneas verticales
     holidays = df[df['holiday'] == True]['date']
     for holiday in holidays:
         plt.axvline(x=holiday, color='r', linestyle='--', alpha=0.7)
 
-    # Add labels and title
+    # Añadir etiquetas y título
     plt.xlabel('Date')
     plt.ylabel('Order Count')
     plt.title('Order Amount per Day with Holidays')
+    
+    # Mostrar leyenda
     plt.legend()
+    
+    # Mostrar la gráfica
     plt.grid(True)
     plt.show()
